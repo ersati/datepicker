@@ -67,3 +67,13 @@ body {
   z-index: 2;
   background: hsla(0, 0%, 100%, 0.8);
 }
+
+.scrollable {
+  height: 10rem;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.scrollable li {
+  scroll-snap-align: center;
+}
