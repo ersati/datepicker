@@ -1,4 +1,4 @@
-.day {
+.day , .month {
     /* background-color: black; */
     width: 40px;
     height: 40px;
@@ -9,6 +9,8 @@
 div.wrapper{
     position: relative;
     /* perspective: 1000px; */
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -17,14 +19,32 @@ div.first-column {
   transform: translateZ(-288px);
   transform-style: preserve-3d;
   transition: transform 1s;
+  /* background-color: aqua; */
+}
+div.second-column { 
+    position: absolute;
+  transform: translateZ(-288px);
+  left: 60px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+    /* background-color: brown; */
 }
 
-
-div.day:nth-child(1) { transform: rotateX(  100deg);
+div.day:nth-child(1) { transform: rotateX(  55deg);
 opacity: .3 }
-div.day:nth-child(2) { transform: rotateX( 50deg) ;opacity: .4}
-div.day:nth-child(3) { transform: rotateX( 10deg) ;opacity: .5}
+div.day:nth-child(2) { transform: rotateX( 35deg) ;opacity: .4}
+div.day:nth-child(3) { transform: rotateX( 15deg) ;opacity: .5}
 div.day:nth-child(4) { transform: rotateX(0deg);opacity: 1 }
-div.day:nth-child(5) { transform: rotateX(-10deg);opacity: .5 }
-div.day:nth-child(6) { transform: rotateX(-50deg) ;opacity: .4}
-div.day:nth-child(7) { transform: rotateX(-100deg); opacity: .3 }
+div.day:nth-child(5) { transform: rotateX(-15deg);opacity: .5 }
+div.day:nth-child(6) { transform: rotateX(-35deg) ;opacity: .4}
+div.day:nth-child(7) { transform: rotateX(-55deg); opacity: .3 }
+
+
+div.month:nth-child(1) { transform: rotateX(  55deg);
+    opacity: .3 }
+    div.month:nth-child(2) { transform: rotateX( 35deg) ;opacity: .4}
+    div.month:nth-child(3) { transform: rotateX( 15deg) ;opacity: .5}
+    div.month:nth-child(4) { transform: rotateX(0deg);opacity: 1 }
+    div.month:nth-child(5) { transform: rotateX(-15deg);opacity: .5 }
+    div.month:nth-child(6) { transform: rotateX(-35deg) ;opacity: .4}
+    div.month:nth-child(7) { transform: rotateX(-55deg); opacity: .3}
