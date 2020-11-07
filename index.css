@@ -1,9 +1,10 @@
-.day , .month {
+.day , .month , .year {
     /* background-color: black; */
     width: 40px;
     height: 40px;
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 div.wrapper{
@@ -11,15 +12,18 @@ div.wrapper{
     /* perspective: 1000px; */
     display: flex;
     flex-direction: column;
+    
 }
 
 
 div.first-column { 
     position: absolute;
   transform: translateZ(-288px);
+  left: 20px;
   transform-style: preserve-3d;
   transition: transform 1s;
   /* background-color: aqua; */
+  
 }
 div.second-column { 
     position: absolute;
@@ -30,21 +34,58 @@ div.second-column {
     /* background-color: brown; */
 }
 
+div.third-column { 
+  position: absolute;
+transform: translateZ(-288px);
+left: 130px;
+transform-style: preserve-3d;
+transition: transform 1s;
+  /* background-color: brown; */
+}
+
 div.day:nth-child(1) { transform: rotateX(  55deg);
-opacity: .3 }
-div.day:nth-child(2) { transform: rotateX( 35deg) ;opacity: .4}
-div.day:nth-child(3) { transform: rotateX( 15deg) ;opacity: .5}
-div.day:nth-child(4) { transform: rotateX(0deg);opacity: 1 }
-div.day:nth-child(5) { transform: rotateX(-15deg);opacity: .5 }
-div.day:nth-child(6) { transform: rotateX(-35deg) ;opacity: .4}
-div.day:nth-child(7) { transform: rotateX(-55deg); opacity: .3 }
+opacity: .2 }
+div.day:nth-child(2) { transform: rotateX( 35deg) ;opacity: .3}
+div.day:nth-child(3) { transform: rotateX( 15deg) ;opacity: .4}
+div.day:nth-child(4) { transform: rotateX(0deg);opacity: 1 ;}
 
 
-div.month:nth-child(1) { transform: rotateX(  55deg);
+div.day:nth-child(4)::before{
+  content: '';
+  height: 40px;
+  width: 400px;
+  display: block;
+  border-top: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  position: absolute;
+  left: -40px;
+    top: -3px;
+}
+
+div.day:nth-child(5) { transform: rotateX(-15deg);opacity: .4 }
+div.day:nth-child(6) { transform: rotateX(-35deg) ;opacity: .3}
+div.day:nth-child(7) { transform: rotateX(-55deg); opacity: .2 }
+
+
+div.month:nth-child(1) { transform: rotateX(  55deg);color: blue;
     opacity: .3 }
-    div.month:nth-child(2) { transform: rotateX( 35deg) ;opacity: .4}
-    div.month:nth-child(3) { transform: rotateX( 15deg) ;opacity: .5}
-    div.month:nth-child(4) { transform: rotateX(0deg);opacity: 1 }
-    div.month:nth-child(5) { transform: rotateX(-15deg);opacity: .5 }
-    div.month:nth-child(6) { transform: rotateX(-35deg) ;opacity: .4}
-    div.month:nth-child(7) { transform: rotateX(-55deg); opacity: .3}
+    div.month:nth-child(2) { transform: rotateX( 35deg) ;color: blue;opacity: .4}
+    div.month:nth-child(3) { transform: rotateX( 15deg) ;color: blue;opacity: .5}
+    div.month:nth-child(4) { transform: rotateX(0deg);opacity: 1 ; color: blue;}
+    
+    
+    div.month:nth-child(5) { transform: rotateX(-15deg);color: blue;opacity: .5 }
+    div.month:nth-child(6) { transform: rotateX(-35deg) ;color: blue;opacity: .4}
+    div.month:nth-child(7) { transform: rotateX(-55deg); color: blue;opacity: .3}
+
+
+
+
+    div.year:nth-child(1) { transform: rotateX(  55deg);;
+      opacity: .1}
+      div.year:nth-child(2) { transform: rotateX( 35deg) ;opacity: .2}
+      div.year:nth-child(3) { transform: rotateX( 15deg) ;opacity: .3}
+      div.year:nth-child(4) { transform: rotateX(0deg); color: blue;opacity: .5 }
+      div.year:nth-child(5) { transform: rotateX(-15deg);opacity: .3 }
+      div.year:nth-child(6) { transform: rotateX(-35deg) ;opacity: .2}
+      div.year:nth-child(7) { transform: rotateX(-55deg); opacity: .1}
