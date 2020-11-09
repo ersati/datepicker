@@ -53,13 +53,24 @@ firstColumn.addEventListener('touchmove', (e) => {
         if(i == days.length){
             i=0; 
         }
-        daysUpdate[0].textContent = days[i ]
-        daysUpdate[1].textContent = days[i +1]
-        daysUpdate[2].textContent = days[i +2]
-        daysUpdate[3].textContent = days[i +3]
-        daysUpdate[4].textContent = days[i +4]
-        daysUpdate[5].textContent = days[i +5]
-        daysUpdate[6].textContent = days[i +6]   
+        // daysUpdate[0].textContent = days[i ]
+        // daysUpdate[1].textContent = days[i +1]
+        // daysUpdate[2].textContent = days[i +2]
+        // daysUpdate[3].textContent = days[i +3]
+        // daysUpdate[4].textContent = days[i +4]
+        // daysUpdate[5].textContent = days[i +5]
+        // daysUpdate[6].textContent = days[i +6]  
+         
+        for(let i = 0; i < daysUpdate.length; i++){
+            daysUpdate[i].textContent = days[i]
+        }
+        debugger
+// for (let i = 0; i < daysUpdate.length; i++){
+//     // daysUpdate[i].style.opacity = `0`;
+//         daysUpdate[i].style.transition = 'all .75s';
+//         daysUpdate[i].style.transform =  `translateY(-50px)`;
+// }
+        
     }
     else if(clientY < start){
         i--
@@ -77,7 +88,14 @@ firstColumn.addEventListener('touchmove', (e) => {
     })
 
 
-
+// firstColumn.addEventListener('touchend', (e) => {
+//     for (let i = 0; i < daysUpdate.length; i++){
+//         // daysUpdate[i].style.opacity = `1`;
+//             daysUpdate[i].style.transition = 'all .75s';
+//             daysUpdate[i].style.transform =  `translateY(0px)`;
+//     }
+         
+// })
 secondColumn.addEventListener('touchstart', (e) => {
     clientY = parseInt(e.touches[0].clientY / 10)
 })
