@@ -61,8 +61,8 @@ firstColumn.addEventListener('touchmove', (e) => {
         // daysUpdate[5].textContent = days[i +5]
         // daysUpdate[6].textContent = days[i +6]  
          
-        for(let i = 0; i < daysUpdate.length; i++){
-            daysUpdate[i].textContent = days[i]
+        for(let j = 0; j < daysUpdate.length; j++){
+            daysUpdate[j].textContent = days[j]
         }
         debugger
 // for (let i = 0; i < daysUpdate.length; i++){
@@ -172,3 +172,9 @@ secondColumn.addEventListener('touchmove', (e) => {
         }
         })
     
+
+        var dayss = function(month,year) {
+            return new Date(year, month, 0).getDate();
+         };
+         document.write("Days in July: "+dayss(7, 2012)); // July month
+         document.write("<br>Days in September: "+dayss(9, 2012)); 
