@@ -3,11 +3,20 @@
 const day = document.querySelector('.day');
 
 const year = document.querySelector('.year')
-const days = [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+let days = [ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+let daysArray = []
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , ' Jul' , 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const years = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
 
-const y = 2020
+const y = new Date().getFullYear();
+const yprev1 = y - 1
+const yprev2 = y - 2
+const yprev3 = y - 3
+const ynext1 = y + 1
+const ynext2 = y + 2
+const ynext3 = y + 3  
+const ynext4 = y + 4
+
 const firstColumn = document.querySelector('.first-column')
 const daysUpdate = document.querySelectorAll('.day');
 
@@ -19,8 +28,8 @@ const yearUpdate = document.querySelectorAll('.year');
 
 let i = 0
 let clientY
-let yearIndex;
-let monthIndex; 
+let yearIndex = 2015
+let monthIndex = 5 ; 
 let daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex))
 
 daysUpdate.forEach((el,i) =>{
@@ -44,6 +53,17 @@ yearUpdate.forEach((el, i)=>{
 
 firstColumn.addEventListener('touchstart', (e) => {
     clientY = parseInt(e.touches[0].clientY / 10)
+console.log(daysinmonth)
+console.log(days.length)
+    console.log(daysinmonth !== days.length)
+daysArray = []
+    if(daysinmonth !== days.length) {
+        for(let i = 0; i < daysinmonth; i++){
+            daysArray.push(i + 1)
+        }
+        days.splice(0, days.length, ...daysArray)
+        console.log(daysArray)
+    }
 })
 firstColumn.addEventListener('touchmove', (e) => {
     
@@ -54,19 +74,21 @@ firstColumn.addEventListener('touchmove', (e) => {
         if(i == days.length){
             i=0; 
         }
-        // daysUpdate[0].textContent = days[i ]
-        // daysUpdate[1].textContent = days[i +1]
-        // daysUpdate[2].textContent = days[i +2]
-        // daysUpdate[3].textContent = days[i +3]
-        // daysUpdate[4].textContent = days[i +4]
-        // daysUpdate[5].textContent = days[i +5]
-        // daysUpdate[6].textContent = days[i +6]  
+        daysUpdate[0].textContent = days[i ]
+        daysUpdate[1].textContent = days[i +1]
+        daysUpdate[2].textContent = days[i +2]
+        daysUpdate[3].textContent = days[i +3]
+        daysUpdate[4].textContent = days[i +4]
+        daysUpdate[5].textContent = days[i +5]
+        daysUpdate[6].textContent = days[i +6]  
          
-        for(let j = 0; j < daysUpdate.length; j++){
-            daysUpdate[j].textContent = days[j]
-        }
+        // for(let j = 0; j < daysUpdate.length; j++){
+        //     daysUpdate[j].textContent = days[j]
+        // }
+
+        console.log(yearIndex, monthIndex)
+        daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex))
         console.log(daysinmonth)
-        
 // for (let i = 0; i < daysUpdate.length; i++){
 //     // daysUpdate[i].style.opacity = `0`;
 //         daysUpdate[i].style.transition = 'all .75s';
@@ -90,22 +112,12 @@ firstColumn.addEventListener('touchmove', (e) => {
     })
 
 
-// firstColumn.addEventListener('touchend', (e) => {
-//     for (let i = 0; i < daysUpdate.length; i++){
-//         // daysUpdate[i].style.opacity = `1`;
-//             daysUpdate[i].style.transition = 'all .75s';
-//             daysUpdate[i].style.transform =  `translateY(0px)`;
-//     }
-         
-// })
+
 secondColumn.addEventListener('touchstart', (e) => {
     clientY = parseInt(e.touches[0].clientY / 10)
 })
 secondColumn.addEventListener('touchmove', (e) => {
-    
     let start = (parseInt(e.touches[0].clientY / 10))
- 
-
     if(clientY > start ){
         i++
         if(i == months.length || i > months.length){
@@ -121,7 +133,11 @@ secondColumn.addEventListener('touchmove', (e) => {
         monthsUpdate[6].textContent = months[i +6]
         monthsUpdate[7].textContent = months[i +7]  
         monthIndex = parseInt(i + 4)
+        if(monthIndex > 11){
+            monthIndex = 0
+        }
         console.log(monthIndex)
+
     }
     else if(clientY < start){
         i--
@@ -137,6 +153,9 @@ secondColumn.addEventListener('touchmove', (e) => {
         monthsUpdate[6].textContent = months[i -6]
         monthsUpdate[7].textContent = months[i -7]
         monthIndex = parseInt(i - 4)
+        if(monthIndex < 0 ){
+            monthIndex = months.length
+        }
         console.log(monthIndex)
     }
     })
@@ -150,41 +169,36 @@ secondColumn.addEventListener('touchmove', (e) => {
      
         if(clientY > start ){
             i++
-            if(i == years.length){
-                i=0; 
-            }
-        yearUpdate[0].textContent = years[i  ]
-        yearUpdate[1].textContent = years[i + 1]
-        yearUpdate[2].textContent = years[i + 2]
-        yearUpdate[3].textContent = years[i + 3]
-        yearUpdate[4].textContent = years[i + 4]
-        yearUpdate[5].textContent = years[i + 5]
-        yearUpdate[6].textContent =  years[i + 6]
-        yearUpdate[7].textContent =  years[i + 7]
-        yearIndex = parseInt(years[i + 4])
-        console.log(yearIndex)
+           
+            yearUpdate[0].textContent = yprev3 + i
+            yearUpdate[1].textContent = yprev2 + i
+            yearUpdate[2].textContent = yprev1 + i
+            yearUpdate[3].textContent = y + i
+            yearUpdate[4].textContent = ynext1 + i
+            yearUpdate[5].textContent = ynext2 + i
+            yearUpdate[6].textContent =  ynext3 + i
+            yearUpdate[7].textContent =  ynext4 + i
+
+        yearIndex = yearUpdate[3].textContent
+       
         }
         else if(clientY < start){
             i--
-            if(i == 0){
-                i=years.length;
-            }
-            yearUpdate[0].textContent = years[i  ]
-            yearUpdate[1].textContent = years[i - 1]
-            yearUpdate[2].textContent = years[i - 2]
-            yearUpdate[3].textContent = years[i - 3]
-            yearUpdate[4].textContent = years[i - 4]
-            yearUpdate[5].textContent = years[i - 5]
-            yearUpdate[6].textContent =  years[i - 6]
-            yearUpdate[7].textContent =  years[i - 7]
-            yearIndex = parseInt(years[i - 4])
-            console.log(yearIndex)
+           
+            yearUpdate[0].textContent = yprev3 - i
+            yearUpdate[1].textContent = yprev2 - i
+            yearUpdate[2].textContent = yprev1 - i
+            yearUpdate[3].textContent = y - i
+            yearUpdate[4].textContent = ynext1 - i
+            yearUpdate[5].textContent = ynext2 - i
+            yearUpdate[6].textContent =  ynext3 - i
+            yearUpdate[7].textContent =  ynext4 - i
+
+         
+            yearIndex = yearUpdate[3].textContent
+              
         }
         })
     
 
-        var dayss = function(month,year) {
-            return new Date(year, month, 0).getDate();
-         };
-         document.write("Days in July: "+dayss(7, 2012)); // July month
-         document.write("<br>Days in September: "+dayss(9, 2012)); 
+     
