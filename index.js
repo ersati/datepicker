@@ -19,8 +19,9 @@ const yearUpdate = document.querySelectorAll('.year');
 
 let i = 0
 let clientY
-
-
+let yearIndex;
+let monthIndex; 
+let daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex))
 
 daysUpdate.forEach((el,i) =>{
     el.textContent = i++
@@ -64,7 +65,8 @@ firstColumn.addEventListener('touchmove', (e) => {
         for(let j = 0; j < daysUpdate.length; j++){
             daysUpdate[j].textContent = days[j]
         }
-        debugger
+        console.log(daysinmonth)
+        
 // for (let i = 0; i < daysUpdate.length; i++){
 //     // daysUpdate[i].style.opacity = `0`;
 //         daysUpdate[i].style.transition = 'all .75s';
@@ -106,7 +108,7 @@ secondColumn.addEventListener('touchmove', (e) => {
 
     if(clientY > start ){
         i++
-        if(i == months.length){
+        if(i == months.length || i > months.length){
             i=0; 
         }
         // day.textContent = days[i];
@@ -118,10 +120,12 @@ secondColumn.addEventListener('touchmove', (e) => {
         monthsUpdate[5].textContent = months[i +5]
         monthsUpdate[6].textContent = months[i +6]
         monthsUpdate[7].textContent = months[i +7]  
+        monthIndex = parseInt(i + 4)
+        console.log(monthIndex)
     }
     else if(clientY < start){
         i--
-        if(i == 0){
+        if(i == 0 || i < 0){
             i=months.length;
         }
         monthsUpdate[0].textContent = months[i ]
@@ -132,6 +136,8 @@ secondColumn.addEventListener('touchmove', (e) => {
         monthsUpdate[5].textContent = months[i -5]
         monthsUpdate[6].textContent = months[i -6]
         monthsUpdate[7].textContent = months[i -7]
+        monthIndex = parseInt(i - 4)
+        console.log(monthIndex)
     }
     })
 
@@ -155,6 +161,8 @@ secondColumn.addEventListener('touchmove', (e) => {
         yearUpdate[5].textContent = years[i + 5]
         yearUpdate[6].textContent =  years[i + 6]
         yearUpdate[7].textContent =  years[i + 7]
+        yearIndex = parseInt(years[i + 4])
+        console.log(yearIndex)
         }
         else if(clientY < start){
             i--
@@ -169,6 +177,8 @@ secondColumn.addEventListener('touchmove', (e) => {
             yearUpdate[5].textContent = years[i - 5]
             yearUpdate[6].textContent =  years[i - 6]
             yearUpdate[7].textContent =  years[i - 7]
+            yearIndex = parseInt(years[i - 4])
+            console.log(yearIndex)
         }
         })
     
