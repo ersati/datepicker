@@ -32,6 +32,8 @@ let yearIndex = 2015
 let monthIndex = 5 ; 
 let daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex))
 
+let press = false;
+
 daysUpdate.forEach((el,i) =>{
     el.textContent = i++
 })
@@ -47,10 +49,169 @@ yearUpdate.forEach((el, i)=>{
     el.textContent = years[++i]
 })
 
+//mouse
+
+firstColumn.addEventListener('mousedown', (e) => {
+    clientY = parseInt(e.clientY / 10)
+    press = true
+    console.log('ok')
+console.log(clientY)
+console.log(days.length)
+    console.log(daysinmonth !== days.length)
+daysArray = []
+    if(daysinmonth !== days.length) {
+        for(let i = 0; i < daysinmonth; i++){
+            daysArray.push(i + 1)
+        }
+        days.splice(0, days.length, ...daysArray)
+        console.log(daysArray)
+    }
+})
+
+firstColumn.addEventListener('mousemove', (e) => {
+    if(press){
+
+        let start = (parseInt(e.clientY / 10))
+ 
+        if(clientY > start ){
+            i++
+            if(i == days.length){
+                i=0; 
+            }
+            daysUpdate[0].textContent = days[i ]
+            daysUpdate[1].textContent = days[i +1]
+            daysUpdate[2].textContent = days[i +2]
+            daysUpdate[3].textContent = days[i +3]
+            daysUpdate[4].textContent = days[i +4]
+            daysUpdate[5].textContent = days[i +5]
+            daysUpdate[6].textContent = days[i +6]  
+           
+            daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex)) 
+        }
+        else if(clientY < start){
+            i--
+            if(i == 0){
+                i=days.length;
+            }
+            daysUpdate[0].textContent = days[i ]
+            daysUpdate[1].textContent = days[i -1]
+            daysUpdate[2].textContent = days[i -2]
+            daysUpdate[3].textContent = days[i -3]
+            daysUpdate[4].textContent = days[i -4]
+            daysUpdate[5].textContent = days[i -5]
+            daysUpdate[6].textContent = days[i -6]
+        }
+    }
+    
+    })
+    firstColumn.addEventListener("mouseup", (e) =>{
+        press = false
+    })
 
 
 
 
+
+    secondColumn.addEventListener('mousedown', (e) => {
+        clientY = parseInt(e.clientY / 10)
+    press = true
+    })
+    secondColumn.addEventListener('mousemove', (e) => {
+        if(press){
+        let start = (parseInt(e.clientY / 10))
+        if(clientY > start ){
+            i++
+            if(i == months.length || i > months.length){
+                i=0; 
+            }
+            // day.textContent = days[i];
+            monthsUpdate[0].textContent = months[i ]
+            monthsUpdate[1].textContent = months[i +1]
+            monthsUpdate[2].textContent = months[i +2]
+            monthsUpdate[3].textContent = months[i +3]
+            monthsUpdate[4].textContent = months[i +4]
+            monthsUpdate[5].textContent = months[i +5]
+            monthsUpdate[6].textContent = months[i +6]
+            monthsUpdate[7].textContent = months[i +7]  
+            monthIndex = parseInt(i + 4)
+            if(monthIndex > 11){
+                monthIndex = 0
+            }
+            console.log(monthIndex)
+    
+        }
+        else if(clientY < start){
+            i--
+            if(i == 0 || i < 0){
+                i=months.length;
+            }
+            monthsUpdate[0].textContent = months[i ]
+            monthsUpdate[1].textContent = months[i -1]
+            monthsUpdate[2].textContent = months[i -2]
+            monthsUpdate[3].textContent = months[i -3]
+            monthsUpdate[4].textContent = months[i -4]
+            monthsUpdate[5].textContent = months[i -5]
+            monthsUpdate[6].textContent = months[i -6]
+            monthsUpdate[7].textContent = months[i -7]
+            monthIndex = parseInt(i - 4)
+            if(monthIndex < 0 ){
+                monthIndex = months.length
+            }
+            console.log(monthIndex)
+        }}
+        })
+
+        secondColumn.addEventListener("mouseup", (e) =>{
+            press = false
+        })
+    
+        thirdColumn.addEventListener('mousedown', (e) => {
+            clientY = parseInt(e.clientY / 10)
+    press = true
+        })
+        thirdColumn.addEventListener('mousemove', (e) => {
+            if(press){
+                let start = (parseInt(e.clientY / 10))
+         
+            if(clientY > start ){
+                i++
+               
+                yearUpdate[0].textContent = yprev3 + i
+                yearUpdate[1].textContent = yprev2 + i
+                yearUpdate[2].textContent = yprev1 + i
+                yearUpdate[3].textContent = y + i
+                yearUpdate[4].textContent = ynext1 + i
+                yearUpdate[5].textContent = ynext2 + i
+                yearUpdate[6].textContent =  ynext3 + i
+                yearUpdate[7].textContent =  ynext4 + i
+    
+            yearIndex = yearUpdate[3].textContent
+           
+            }
+            else if(clientY < start){
+                i--
+               
+                yearUpdate[0].textContent = yprev3 - i
+                yearUpdate[1].textContent = yprev2 - i
+                yearUpdate[2].textContent = yprev1 - i
+                yearUpdate[3].textContent = y - i
+                yearUpdate[4].textContent = ynext1 - i
+                yearUpdate[5].textContent = ynext2 - i
+                yearUpdate[6].textContent =  ynext3 - i
+                yearUpdate[7].textContent =  ynext4 - i
+    
+             
+                yearIndex = yearUpdate[3].textContent
+                  
+            }
+        }
+            })
+
+            thirdColumn.addEventListener("mouseup", (e) =>{
+                press = false
+            })
+
+//touch
 firstColumn.addEventListener('touchstart', (e) => {
     clientY = parseInt(e.touches[0].clientY / 10)
 console.log(daysinmonth)
