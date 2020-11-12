@@ -1,5 +1,4 @@
 .day , .month , .year {
-    /* background-color: black; */
     width: 40px;
     height: 40px;
     font-size: 30px;
@@ -15,42 +14,32 @@ h1 {
     margin: 15px ;
 }
 div.wrapper{
-    /* position: relative; */
-    /* perspective: 1000px; */
     margin-top: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
-    
 }
 
 
 div.first-column { 
-    /* position: absolute; */
   transform: translateZ(-288px);
-  left: 20px;
   transform-style: preserve-3d;
-  transition: transform 1s;
-  /* background-color: aqua; */
-  
+  transition: transform 1s; 
 }
 div.second-column { 
-    /* position: absolute; */
   transform: translateZ(-288px);
-  left: 60px;
   transform-style: preserve-3d;
   transition: transform 1s;
-    /* background-color: brown; */
+    
 }
 
 div.third-column { 
-  /* position: absolute; */
+  
 transform: translateZ(-288px);
-left: 130px;
+
 transform-style: preserve-3d;
 transition: transform 1s;
-  /* background-color: brown; */
+  
 }
 
 div.day:nth-child(1) { transform: rotateX(  55deg);
@@ -63,13 +52,14 @@ div.day:nth-child(4) { transform: rotateX(0deg);opacity: 1 ;}
 div.day:nth-child(4)::before{
   content: '';
   height: 40px;
-  width: 400px;
+  width: 100vw;
   display: block;
   border-top: 1px solid rgba(0, 0, 0, .2);
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   position: absolute;
   left: -60px;
     top: -3px;
+    overflow: hidden;
 }
 
 div.day:nth-child(5) { transform: rotateX(-15deg);opacity: .4 }
