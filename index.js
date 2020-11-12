@@ -33,7 +33,7 @@ let monthIndex = 5 ;
 let daysinmonth = dateFns.getDaysInMonth(new Date(yearIndex, monthIndex))
 
 let press = false;
-
+let flage = false
 daysUpdate.forEach((el,i) =>{
     el.textContent = i++
 })
@@ -49,6 +49,46 @@ yearUpdate.forEach((el, i)=>{
     el.textContent = years[++i]
 })
 
+function monthUp () {
+    i++
+    if(i == months.length || i > months.length){
+        i=0; 
+    }
+    // day.textContent = days[i];
+    monthsUpdate[0].textContent = months[i ]
+    monthsUpdate[1].textContent = months[i +1]
+    monthsUpdate[2].textContent = months[i +2]
+    monthsUpdate[3].textContent = months[i +3]
+    monthsUpdate[4].textContent = months[i +4]
+    monthsUpdate[5].textContent = months[i +5]
+    monthsUpdate[6].textContent = months[i +6]
+    monthsUpdate[7].textContent = months[i +7]  
+    monthIndex = parseInt(i + 4)
+    if(monthIndex > 11){
+        monthIndex = 0
+    }
+    console.log(monthIndex)
+}
+
+function monthDown () {
+    i--
+    if(i == 0 || i < 0){
+        i=months.length;
+    }
+    monthsUpdate[0].textContent = months[i ]
+    monthsUpdate[1].textContent = months[i -1]
+    monthsUpdate[2].textContent = months[i -2]
+    monthsUpdate[3].textContent = months[i -3]
+    monthsUpdate[4].textContent = months[i -4]
+    monthsUpdate[5].textContent = months[i -5]
+    monthsUpdate[6].textContent = months[i -6]
+    monthsUpdate[7].textContent = months[i -7]
+    monthIndex = parseInt(i - 4)
+    if(monthIndex < 0 ){
+        monthIndex = months.length
+    }
+    console.log(monthIndex)
+}
 //mouse
 
 firstColumn.addEventListener('mousedown', (e) => {
@@ -117,52 +157,63 @@ firstColumn.addEventListener('mousemove', (e) => {
     press = true
     })
     secondColumn.addEventListener('mousemove', (e) => {
+        e.preventDefault()
+        
         if(press){
         let start = (parseInt(e.clientY / 10))
         if(clientY > start ){
-            i++
-            if(i == months.length || i > months.length){
-                i=0; 
-            }
-            // day.textContent = days[i];
-            monthsUpdate[0].textContent = months[i ]
-            monthsUpdate[1].textContent = months[i +1]
-            monthsUpdate[2].textContent = months[i +2]
-            monthsUpdate[3].textContent = months[i +3]
-            monthsUpdate[4].textContent = months[i +4]
-            monthsUpdate[5].textContent = months[i +5]
-            monthsUpdate[6].textContent = months[i +6]
-            monthsUpdate[7].textContent = months[i +7]  
-            monthIndex = parseInt(i + 4)
-            if(monthIndex > 11){
-                monthIndex = 0
-            }
-            console.log(monthIndex)
+            // i++
+            // if(i == months.length || i > months.length){
+            //     i=0; 
+            // }
+            // // day.textContent = days[i];
+            // monthsUpdate[0].textContent = months[i ]
+            // monthsUpdate[1].textContent = months[i +1]
+            // monthsUpdate[2].textContent = months[i +2]
+            // monthsUpdate[3].textContent = months[i +3]
+            // monthsUpdate[4].textContent = months[i +4]
+            // monthsUpdate[5].textContent = months[i +5]
+            // monthsUpdate[6].textContent = months[i +6]
+            // monthsUpdate[7].textContent = months[i +7]  
+            // monthIndex = parseInt(i + 4)
+            // if(monthIndex > 11){
+            //     monthIndex = 0
+            // }
+            // console.log(monthIndex)
+flage = true;
+            // monthUp()
     
         }
         else if(clientY < start){
-            i--
-            if(i == 0 || i < 0){
-                i=months.length;
-            }
-            monthsUpdate[0].textContent = months[i ]
-            monthsUpdate[1].textContent = months[i -1]
-            monthsUpdate[2].textContent = months[i -2]
-            monthsUpdate[3].textContent = months[i -3]
-            monthsUpdate[4].textContent = months[i -4]
-            monthsUpdate[5].textContent = months[i -5]
-            monthsUpdate[6].textContent = months[i -6]
-            monthsUpdate[7].textContent = months[i -7]
-            monthIndex = parseInt(i - 4)
-            if(monthIndex < 0 ){
-                monthIndex = months.length
-            }
-            console.log(monthIndex)
+            // i--
+            // if(i == 0 || i < 0){
+            //     i=months.length;
+            // }
+            // monthsUpdate[0].textContent = months[i ]
+            // monthsUpdate[1].textContent = months[i -1]
+            // monthsUpdate[2].textContent = months[i -2]
+            // monthsUpdate[3].textContent = months[i -3]
+            // monthsUpdate[4].textContent = months[i -4]
+            // monthsUpdate[5].textContent = months[i -5]
+            // monthsUpdate[6].textContent = months[i -6]
+            // monthsUpdate[7].textContent = months[i -7]
+            // monthIndex = parseInt(i - 4)
+            // if(monthIndex < 0 ){
+            //     monthIndex = months.length
+            // }
+            // console.log(monthIndex)
+flage = false;
+            // monthDown()
         }}
         })
 
         secondColumn.addEventListener("mouseup", (e) =>{
-            press = false
+            press = false;
+            if(flage){
+                monthUp()
+            } else {
+                monthDown()
+            }
         })
     
         thirdColumn.addEventListener('mousedown', (e) => {
